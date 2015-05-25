@@ -1,0 +1,8 @@
+node_modules
+*.pid
+*.log
+
+*.iml
+.idea
+
+config.json

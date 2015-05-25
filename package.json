@@ -1,0 +1,18 @@
+{
+  "name": "thermosmart-core",
+  "version": "1.0.0",
+  "description": "Core of ThermoSmart",
+  "main": "index.js",
+  "dependencies": {
+    "mqtt": "^1.1.5"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/_mocha --recursive -R spec -r should tests"
+  },
+  "author": "Alexandre Thomazo <alex@thomazo.info>",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^6.0.3"
+  }
+}
