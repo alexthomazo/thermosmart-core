@@ -1,15 +1,15 @@
 {
-  "sensors": {
-	"jee-chambre": { "name": "Chambre", "type": "jeenode", "id": "jee-80" },
-	"jee-salon": { "name": "Salon", "type": "jeenode", "id": "jee-88" },
-	"jee-ext": { "name": "Extérieur", "type": "jeenode", "id": "jee-10" }
-  },
+  "sensors": [
+	{ "id": "jee-chambre", "name": "Chambre", "type": "jeenode", "sensorId": "jee-80" },
+	{ "id": "jee-salon", "name": "Salon", "type": "jeenode", "sensorId": "jee-88" },
+	{ "id": "jee-ext", "name": "Extérieur", "type": "jeenode", "sensorId": "jee-10" }
+  ],
 
-  "devices": {
-	"zwave-salon": { "name": "Salon", "type": "zwave", "node": "2", "instance": "1"},
-	"zwave-cuisine": { "name": "Cuisine", "type": "zwave", "node": "3", "instance": "2"},
-	"zwave-chambre": { "name": "Chambre", "type": "zwave", "node": "3", "instance": "1"}
-  },
+  "devices": [
+	{ "id": "zwave-salon", "name": "Salon", "type": "zwave", "node": "2", "instance": "1"},
+	{ "id": "zwave-cuisine", "name": "Cuisine", "type": "zwave", "node": "3", "instance": "2"},
+	{ "id": "zwave-chambre", "name": "Chambre", "type": "zwave", "node": "3", "instance": "1"}
+  ],
 
   "zones": {
 	"salon": {
