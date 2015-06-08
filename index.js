@@ -7,7 +7,8 @@ var conf = JSON.parse(fs.readFileSync('config.json'));
 //setup mqtt communication
 var client  = mqtt.connect('mqtt://localhost');
 
-var sensorService = require('./lib/SensorService.js')(conf);
+var sensorService = require('./lib/SensorService.js')(conf),
+    zoneService = require('./lib/ZoneService.js')(conf, client);
 
 // ----------------------------------------------------------------------------------
 // --------------                  MQTT PART                   ----------------------
@@ -18,12 +19,17 @@ client.on('connect', function () {
 
     //read previous state persisted into mqtt broker
     client.subscribe(mqtt_base_topic + 'temperature/#');
+    client.subscribe(mqtt_base_topic + 'zones/#');
+
+    //init services
+    zoneService.init();
 });
 
 
 client.on('message', function (topic, message) {
-    var msg = JSON.parse(message.toString());
+    var msg = message.length != 0 ? JSON.parse(message.toString()) : null;
     sensorService.handleMsg(topic, msg);
+    zoneService.handleMsg(topic, msg);
 });
 
 function monitor() {
@@ -33,7 +39,7 @@ function monitor() {
 }
 
 function printSensors() {
-    console.log(sensorService.getList());
+    //console.log(sensorService.getList());
     setTimeout(printSensors, 5000);
 }
 printSensors();
