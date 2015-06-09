@@ -34,7 +34,7 @@ client.on('message', function (topic, message) {
 
 function monitor() {
     //publish each 30s that the server is still alive
-    client.publish("thermosmart/monitor/core", JSON.stringify(new Date().toISOString()), { retain: true });
+    client.publish("thermosmart/monitor/core", JSON.stringify(new Date().toISOString()));
     setTimeout(monitor, 30000);
 }
 

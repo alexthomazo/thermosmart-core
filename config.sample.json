@@ -11,8 +11,9 @@
 	{ "id": "zwave-chambre", "name": "Chambre", "type": "zwave", "node": "3", "instance": "1"}
   ],
 
-  "zones": {
-	"salon": {
+  "zones": [
+	{
+	  "id": "salon",
 	  "name": "Salon",
 	  "sensors": ["jee-salon"],
 	  "devices": ["zwave-salon", "zwave-cuisine"],
@@ -24,7 +25,8 @@
 	  }
 	},
 
-	"chambre": {
+	{
+	  "id": "chambre",
 	  "name": "Chambre",
 	  "sensors": ["jee-chambre"],
 	  "devices": ["zwave-chambre"],
@@ -35,5 +37,5 @@
 		"delta": 0.2
 	  }
 	}
-  }
+  ]
 }
