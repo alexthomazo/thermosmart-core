@@ -23,6 +23,7 @@ client.on('connect', function () {
 
     //init services
     zoneService.init();
+    setTimeout(computeHeating, 2000);
 });
 
 
@@ -38,8 +39,15 @@ function monitor() {
     setTimeout(monitor, 30000);
 }
 
-function printSensors() {
-    //console.log(sensorService.getList());
-    setTimeout(printSensors, 5000);
+//main function
+function computeHeating() {
+    var zones = zoneService.getList();
+
+    zones.forEach(function(zone) {
+        var temperature = zoneService.computeZoneTemperature(zone, sensorService.getList());
+
+        console.log(zone.name + ": " + temperature);
+    });
+
+    setTimeout(computeHeating, 5000);
 }
-printSensors();
