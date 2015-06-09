@@ -4,6 +4,7 @@
   "description": "Core of ThermoSmart",
   "main": "index.js",
   "dependencies": {
+    "moment": "^2.10.3",
     "mqtt": "^1.1.5"
   },
   "scripts": {

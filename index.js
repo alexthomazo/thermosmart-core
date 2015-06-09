@@ -1,5 +1,6 @@
 var fs = require('fs'),
-    mqtt = require('mqtt');
+    mqtt = require('mqtt'),
+    moment = require('moment');
 
 var mqtt_base_topic = 'thermosmart/';
 var conf = JSON.parse(fs.readFileSync('config.json'));
@@ -45,8 +46,10 @@ function computeHeating() {
 
     zones.forEach(function(zone) {
         var temperature = zoneService.computeZoneTemperature(zone, sensorService.getList());
+        var doHeating = zoneService.doHeating(zone, temperature);
 
-        console.log(zone.name + ": " + temperature);
+        console.log(zone.name + ": " + temperature + " - " + zone.setPoint + " " +
+            (doHeating ? "HEAT" : "") );
     });
 
     setTimeout(computeHeating, 5000);
