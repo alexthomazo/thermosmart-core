@@ -6,10 +6,11 @@ var mqtt_base_topic = 'thermosmart/';
 var conf = JSON.parse(fs.readFileSync('config.json'));
 
 //setup mqtt communication
-var client  = mqtt.connect('mqtt://localhost');
+var client  = mqtt.connect('mqtt://192.168.0.102');
 
 var sensorService = require('./lib/SensorService.js')(conf),
-    zoneService = require('./lib/ZoneService.js')(conf, client);
+    zoneService = require('./lib/ZoneService.js')(conf, client),
+    deviceService = require('./lib/DeviceService.js')(conf, client);
 
 // ----------------------------------------------------------------------------------
 // --------------                  MQTT PART                   ----------------------
@@ -47,6 +48,8 @@ function computeHeating() {
     zones.forEach(function(zone) {
         var temperature = zoneService.computeZoneTemperature(zone, sensorService.getList());
         var doHeating = zoneService.doHeating(zone, temperature);
+
+        deviceService.setSwitch(zone, doHeating);
 
         console.log(zone.name + ": " + temperature + " - " + zone.setPoint + " " +
             (doHeating ? "HEAT" : "") );
