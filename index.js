@@ -6,7 +6,7 @@ var mqtt_base_topic = 'thermosmart/';
 var conf = JSON.parse(fs.readFileSync('config.json'));
 
 //setup mqtt communication
-var client  = mqtt.connect('mqtt://192.168.0.102');
+var client  = mqtt.connect('mqtt://localhost');
 
 var sensorService = require('./lib/SensorService.js')(conf),
     zoneService = require('./lib/ZoneService.js')(conf, client),
